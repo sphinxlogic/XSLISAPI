@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="sampleA-Config.xml" href="sampleA-IE5.xsl" ?>
+<colors>
+  <color>
+     <name>Red</name>
+     <value>Red</value>
+  </color>
+
+  <color>
+     <name>Blue</name>
+     <value>Blue</value>
+  </color>
+
+  <color>
+     <name>Green</name>
+     <value>Green</value>
+  </color>
+
+  <color>
+     <name>Orange</name>
+     <value>Orange</value>
+  </color>
+
+  <color>
+     <name>Yellow</name>
+     <value>Yellow</value>
+  </color>
+
+</colors>

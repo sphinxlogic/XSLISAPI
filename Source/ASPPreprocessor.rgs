@@ -1,0 +1,26 @@
+HKCR
+{
+        XSLISAPI.ASPPreprocessor.1 = s 'ASP Preprocessor object'
+        {
+                CLSID = s '{006938ee-be8e-443c-8ddf-63bcd3de73b0}'
+        }
+        XSLISAPI.ASPPreprocessor = s 'ASP Preprocessor object'
+        {
+                CLSID = s '{006938ee-be8e-443c-8ddf-63bcd3de73b0}'
+                CurVer = s 'XSLISAPI.ASPPreprocessor.1'
+        }
+        NoRemove CLSID
+        {
+                ForceRemove {006938ee-be8e-443c-8ddf-63bcd3de73b0} = s 'ASP Preprocessor object'
+                {
+                        ProgID = s 'XSLISAPI.ASPPreprocessor.1'
+                        VersionIndependentProgID = s 'XSLISAPI.ASPPreprocessor'
+                        ForceRemove 'Programmable'
+                        InprocServer32 = s '%MODULE%'
+                        {
+                                val ThreadingModel = s 'Both'
+                        }
+                        'TypeLib' = s '{9A31B2D4-52BB-4D05-9209-1CB26DFFD4C1}'
+                }
+        }
+}

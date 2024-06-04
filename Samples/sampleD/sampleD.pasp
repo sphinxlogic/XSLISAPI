@@ -1,0 +1,21 @@
+<% ' This code is used to show the XSL files in the local xslisapi directory.
+   ' Here we see that we can dynamically generate different XML data.
+%>
+
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="sampleD-Config.xml" href="sampleD-IE5.xsl" ?>
+<files>
+<%
+
+    ' Here we create the File System Object and get the files in xslisapi directory
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set files = fso.GetFolder(Server.MapPath("\xslisapi")).files
+
+    ' If the last four characters of a file name is ".xsl" then we emit the file name to XML
+    For Each file In files
+        If Right(file.Name, 4) = ".xsl" Or Right(file.Name, 4) = ".XSL" Then
+           %><file><%= Server.MapPath("\xslisapi") + "\" + file.Name%></file><%
+        End If
+    Next
+%>
+</files>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<!-- Here we set the doctype as "OnBackorder"-->
+<!DOCTYPE OnBackorder>
+<?xml-stylesheet type="text/xsl" server-config="sampleC-Config.xml" href="sampleC-IE5.xsl" ?>
+<fruits>
+  <fruit>
+    <name>starfruit</name>
+    <price>2.00</price>
+  </fruit>
+
+  <fruit>
+    <name>kiwis</name>
+    <price>0.33</price>
+  </fruit>
+
+  <fruit>
+    <name>pineapples</name>
+    <price>1.50</price>
+  </fruit>
+
+  <fruit>
+    <name>watermelon</name>
+    <price>0.30</price>
+  </fruit>
+
+</fruits>

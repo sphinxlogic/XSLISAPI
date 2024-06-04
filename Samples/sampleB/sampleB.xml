@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="sampleB-Config.xml" href="sampleB-IE5.xsl" ?>
+
+<fruit_salad_ingredients>
+  <fruit>
+    <name>oranges</name>
+  </fruit>
+  <fruit>
+    <name>apples</name>
+  </fruit>
+  <fruit>
+    <name>pears</name>
+  </fruit>
+  <fruit>
+    <name>grapes</name>
+  </fruit>
+  <fruit>
+    <name>strawberries</name>
+  </fruit>
+  <fruit>
+    <name>pineapples</name>
+  </fruit>
+  <fruit>
+    <name>bannas</name>
+  </fruit>
+  <fruit>
+    <name>kiwis</name>
+  </fruit>
+  <fruit>
+    <name>starfruit</name>
+  </fruit>
+  <fruit>
+    <name>watermelon</name>
+  </fruit>
+</fruit_salad_ingredients>

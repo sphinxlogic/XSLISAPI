@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="default/default-Config.xml" href="default/default-IE5.xsl" ?>
+<samples>
+
+  <sample>
+    <name>Sample A</name>
+    <fileName>sampleA/SampleA.xml</fileName>
+  </sample>
+
+  <sample>
+    <name>Sample B</name>
+    <fileName>sampleB/SampleB.xml</fileName>
+  </sample>
+
+  <sample>
+    <name>Sample C with document type "On BackOrder"</name>
+    <fileName>sampleC/SampleC-OnBackOrder.xml</fileName>
+  </sample>
+
+  <sample>
+    <name>Sample C with document type "Available"</name>
+    <fileName>sampleC/SampleC-Available.xml</fileName>
+  </sample>
+
+  <sample>
+    <name>Sample D</name>
+    <fileName>SampleD\SampleD.pasp</fileName>
+  </sample>
+
+  <sample>
+    <name>Sample E</name>
+    <fileName>sampleE/SampleE.xml</fileName>
+  </sample>
+
+  <sample>
+    <name>Sample F</name>
+    <fileName>sampleF/SampleF.pasp</fileName>
+  </sample>
+
+</samples>

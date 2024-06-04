@@ -1,0 +1,366 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl"?>
+<document>
+<title>
+	<line>XSL ISAPI Filter 2.0</line>
+</title>
+<subtitle>
+	<line>Server-side XSL formatting for multiple device-types</line>
+</subtitle>
+<month_year>
+	<line>May 2000</line>
+</month_year>
+<header>
+	<line>Introduction </line>
+</header>
+<line>Web browsing devices are becoming increasingly more widespread and varied.  Witness the variety of Internet-enabled cellphones, handhelds, voice-enabled browsers, and television and game-console based browsers becoming available.  What's more, different devices within a form-factor may have different markup languages that it interprets.</line>
+<line>All of this makes the job of the content developer that wants to optimize presentation on each device considerably more complex.  XML and XSL provide pieces of a solution to this dilemma, whereby content developers can provide their data in XML form and then provide XSL stylesheets for each different device that he or she is interested in supporting.  The XSL is used to filter and transform the XML for presentation on the appropriate device.  However, there are missing pieces to this story, and the XSL ISAPI Filter is a tool that helps bridge this gap.</line>
+<header>
+	<line>Motivation</line>
+</header>
+<line>The XSL ISAPI Filter is motivated primarily by these concerns:</line>
+<line>* Not all client browsers (including more and more browsers for small and wireless devices) support XSL.</line>
+<line>* Choosing amongst stylesheets based upon browser device characteristics, and then executing them on the server, is difficult.</line>
+<line>* Dynamically generating XML via ASP pages and having the result transformed by XSL on the server is a difficult and cumbersome process.</line>
+<header>
+	<line>Features</line>
+</header>
+<line>The Microsoft XSL ISAPI Filter simplifies the task of performing server-side XSL transformations. It features:</line>
+<line>1. Automatic execution of XSL stylesheets on the server, choosing alternate stylesheets based on browser device characteristics and/or XML document type</line>
+<line>2. Pipelining of ASP-generated XML into XSL stylesheets</line>
+<line>3. Stylesheet caching for improved server performance.  Includes caching of precompiled stylesheets via the XSLTemplate object on systems with this object installed.</line>
+<line>4. Chaining execution of multiple stylesheets</line>
+<line>5. Multiple, configurable output MIME types</line>
+<line>6. Post-processing support for cellphone markup languages HDML, WML 1.0, and WML 1.1</line>
+<line>7. Ability to specify output encodings and character-sets</line>
+<line>8. Device-customizable error messages </line>
+<line>9. Configurable "pass-through" of the XML for subsequent client-side XSL processing</line>
+<line>This product is being made available as a technology preview with full source code.  It is a follow-on to the XSL ISAPI Extension 1.1 release.</line>
+<header>
+	<line>What's New</line>
+</header>
+<line>A number of the above features are new since XSL ISAPI Extension 1.1, including pipelining of ASP-generated XML, a richer device-characteristics vocabulary, configurable MIME types, chaining of XSL stylesheets, use of the XSLTemplate object, post-processing support, and custom error messages that can be formatted based upon device characteristics.</line>
+<line></line>
+<header>
+	<line>System Requirements</line>
+</header>
+<line>The XSL ISAPI Filter is targeted for use on Microsoft(r) Windows(r) 2000 Server and Microsoft Windows 2000 Advanced Server running with MSXML 2.5 or MSXML 3.0.  Other configurations that will work, but haven't been exhaustively tested, include:</line>
+<line>1. NT4 with IIS 4.0 - This will work, however, see the Known Issues document for additional limitations when using dynamically generated XML and a file must be substituted during the installation process. </line>
+<line>2. MSXML 2.6, and versions after 3.0.</line>
+<header>
+	<line>Installation</line>
+</header>
+<line>Link to the downloadable package should go here</line>
+<line>The above distribution should be downloaded and the files expanded onto your hard drive.  Files referenced below will be mentioned relative to the place at which they're downloaded.</line>
+<header>
+	<line>Minimal Required Installation steps</line>
+</header>
+<line>The following steps are required for any usage of XSL ISAPI:  </line>
+<line>1. Register the xslisapi2.dll via "regsvr32 xslisapi2.dll".  A dialog box indicating success should be displayed.</line>
+<line>2. Using the IIS Administration tool, right-click on Default Web Site, select Properties, select the ISAPI Filters tab, select "Add...", type the filter name (e.g., "XSLISAPI2"), and browse to xslisapi2.dll for the executable.  Click OK, then OK again.  </line>
+<line>3. Verify that the filter is properly installed by going back to the ISAPI Filters tab and seeing that there's a green up-arrow next to the filter name.</line>
+<line>4. Create an "xslisapi" virtual directory (note this is "xslisapi" and not "xslisapi2") on your web server.  </line>
+<line>a. Launching the "Create New Virtual Directory" wizard by right clicking on "Default Web Site", and selecting "New... Virtual Directory".</line>
+<line>b. Name the virtual directory "xslisapi"</line>
+<line>c. Make this virtual directory point to the directory on your machine that you expanded the distribution into.  Be sure that this directory has the following files: RedirectorXML.asp, errorConfig.xml, errorHTML.xsl, and errorWML11.xsl.</line>
+<line>d. Be sure the "Read" and "Run scripts" checkboxes are checked on the permissions dialog.</line>
+<header>
+	<line>Additional Steps for Dynamic XML</line>
+</header>
+<line>If you want to have dynamically generated XML (via ASP files) processed through XSL ISAPI, follow these additional steps (note these steps have already been done for the included samples that perform dynamic XML generation): </line>
+<line>For each IIS directory that will contain .pasp files (explained in ASP-produced XML content section), you need to</line>
+<line>* Copy RedirectorPASP.asp from the XSLISAPI2 distribution into the directory that the .pasp files will be in.</line>
+<line>* Copy global.asa from the XSLISAPI2 distribution into that same directory (or anywhere higher up in the directory structure of the IIS Application, since all global.asa's up the hierarchy are visited.)  </line>
+<line>* If there's already a global.asa file where you want to put it, you'll need to merge the contents of the two.</line>
+<line>Note: There are two RedirectorPASP.asp files that ship with XSL ISAPI 2. The default RedirectorPASP.asp (in the main distribution file) works on Windows 2000 Server but will not work on NT 4.  Both of the RedirectorPASP.asp files contain comments that identify their corresponding operating system.  </line>
+<line>These steps must be performed if you want to dynamically generate XML on NT 4. </line>
+<line>* Open the NT4 folder in the distribution. </line>
+<line>* Copy the RedirectorPASP.asp file from the NT4 folder and replace all copies of the Windows 2000 RedirectorPASP.asp file.  A copy of the correct RedirectorPASP.asp file must be in all directories that will contain .pasp files. </line>
+<line>Additional Steps for Extended Browser Information</line>
+<line>Follow the steps below for adding information about additional browsers to IIS's browser information database, browscap.ini:</line>
+<line>* Add the contents of browscap-add.ini from the XSLISAPI2 distribution into your %SYSTEMROOT%\system32\inetsrv\browscap.ini.  This will add identifying information about a number of cell-phone browser simulators.  This doesn't need to be done if you're not planning on using the browsers specified in browscap-add.ini.  Add the contents just above the "Default Browser" section.</line>
+<line>* Add sections for whatever other browsers you might be using to the %SYSTEMROOT%\system32\inetsrv\browscap.ini file, along with identifying information that you'll want to use in your configuration files (configuration files are discussed in a subsequent section).</line>
+<header>
+	<line>Verify Installation</line>
+</header>
+<line>After all the installation steps have been performed, you should stop and restart the IIS service through the IIS Administration tool. </line>
+<line>To verify that the installation was done properly, use an HTML browser to visit http://localhost/xslisapi/samples/install/installtest.xml.  This should result in text indicating that the filter is installed properly.  If this file doesn't exist, it's likely because you pointed the virtual directory to a directory other than the one you expanded the XSLISAPI distribution into.  </line>
+<line>Also visit http://localhost/xslisapi/samples/install/installtest.pasp.  This tests dynamic XML generation, and should result in text displaying that the installation is valid.</line>
+<line>If either of these doesn't work, look back at the installation steps to ensure that you didn't miss any.</line>
+<line></line>
+<header>
+	<line>Usage</line>
+</header>
+<header>
+	<line>Stylesheet Selection</line>
+</header>
+<line>Once the XSL ISAPI filter is installed, the filter will examine all requests for a URL with a .xml extension.  XML files that have a processing instruction of the form:</line>
+<line></line>
+<line>&lt;?xml-stylesheet type="text/xsl" server-config="myConfig.xml"</line>
+<line>                                 href="clientSS.xsl" ?&gt;</line>
+<line></line>
+<line>are selected for processing by XSL ISAPI.  The configuration file specified in the server-config attribute will be loaded, and it will be used to determine what stylesheet(s) to apply to the XML file.  For example, myConfig.xml might be:</line>
+<line></line>
+<line>&lt;?xml version="1.0" ?&gt;</line>
+<line>&lt;server-styles-config&gt;</line>
+<line>  &lt;device target-markup="WML1.1"&gt;</line>
+<line>    &lt;stylesheet href="wml11Style.xsl"/&gt;</line>
+<line>  &lt;/device&gt;</line>
+<line>  &lt;device browser="IE" version="5.0"&gt;</line>
+<line>    &lt;stylesheet href="ie50Style.xsl"/&gt;</line>
+<line>  &lt;/device&gt;</line>
+<line>  &lt;device browser="IE" version="3.0"&gt;</line>
+<line>    &lt;stylesheet href="ie30Style.xsl"/&gt;</line>
+<line>  &lt;/device&gt;</line>
+<line>&lt;/server-styles-config&gt;</line>
+<line></line>
+<line>This configuration file chooses between three XSL stylesheets to be applied, based upon the device characteristics of the requesting browser.</line>
+<line>Device characteristics &amp; browscap.ini</line>
+<line>Each &lt;device&gt; element in the configuration file contains an arbitrary number of attributes.  These attributes are used to determine if the stylesheets specified as child elements of the &lt;device&gt; element will be used.  XSL ISAPI uses the ASP BrowserType object to compare each attribute with the corresponding device property in the %SYSTEMDIR%\system32\inetsrv\browscap.ini database.  The string comparison performed is case-sensitive.  If all of a &lt;device&gt; element's attributes are matched, the &lt;device&gt; element's child &lt;stylesheet&gt; elements are selected.  Some more rules governing this selection are:</line>
+<line>* The &lt;device&gt; elements are evaluated from top to bottom, with the first match "winning".</line>
+<line>* If a property doesn't exist in browscap.ini for the requesting browser, a value of "undefined" is used.</line>
+<line>* A &lt;device&gt; element without any attributes is considered an automatic match, and its stylesheet child elements are selected.</line>
+<line>* If no &lt;device&gt; elements match, the XML is sent, untouched, to the browser, with a content-type of "text/xml".  In the above example, that would result in the clientSS.xsl stylesheet being applied on the client machine. </line>
+<line>* If there is a &lt;device&gt; match, but that &lt;device&gt; element doesn't contain any &lt;stylesheet&gt; child elementss, the XML is sent, untouched, to the browser.1</line>
+<header>
+	<line>Stylesheet chaining</line>
+</header>
+<line>Multiple XSL stylesheets may be chained together simply by specifying them all as children of a &lt;device&gt; node.  For example,</line>
+<line></line>
+<line>&lt;device browser="IE" version="5.0"&gt;</line>
+<line>  &lt;stylesheet href="removeApples.xsl"/&gt;</line>
+<line>  &lt;stylesheet href="sortByPrice.xsl"/&gt;</line>
+<line>  &lt;stylesheet href="ie50Style.xsl"/&gt;</line>
+<line>&lt;/device&gt;</line>
+<line></line>
+<line>would first apply removeApples.xsl to the incoming XML, pass the result on to sortByPrice.xsl, and pass that output on to ie50Style.xsl.  Note that all but the last stylesheet must be an XML to XML transformation, since the input to the next stylesheet is expected to be XML.</line>
+<line>There is currently a maximum of 64 chained stylesheets.  If necessary, this is easily modified in the source code.</line>
+<header>
+	<line>content-type specification</line>
+</header>
+<line>Different stylesheets may produce output that should be sent along with a different MIME type.  Choosing the MIME type proceeds as follows:</line>
+<line>* The chosen &lt;device&gt; element is searched for a &lt;content-type&gt; child, as in:</line>
+<line></line>
+<line>&lt;device ...&gt;</line>
+<line>  &lt;content-type type="text/myType" /&gt;</line>
+<line>  &lt;stylesheet href="....xsl" /&gt;</line>
+<line>&lt;/device&gt;</line>
+<line></line>
+<line>if found, this value is used.</line>
+<line>* The browscap.ini database is consulted for the "content-type" property.  If it exists, it is used.</line>
+<line>* Otherwise, a content-type of "text/html" is used.</line>
+<header>
+	<line>Doctype-based selection </line>
+</header>
+<line>All of the above examples describe stylesheet selection based solely upon device characteristics.  It can also be useful to choose the stylesheet based upon the nature of the XML document being processed.  To that end, XSL ISAPI supports stylesheet selection based upon the doctype of the incoming XML document.  Here is a sample configuration file:</line>
+<line></line>
+<line>&lt;?xml version="1.0" ?&gt;</line>
+<line>&lt;server-styles-config&gt;</line>
+<line></line>
+<line>  &lt;device target-markup="WML1.1"&gt;</line>
+<line>    &lt;doctype name="invoice"&gt;    </line>
+<line>      &lt;stylesheet href="wml11Invoice.xsl"/&gt;</line>
+<line>    &lt;/doctype&gt;</line>
+<line>    &lt;doctype name="productDescrip, descrip"&gt;</line>
+<line>      &lt;stylesheet href="wml11Descrip.xsl"/&gt;</line>
+<line>    &lt;/doctype&gt;</line>
+<line>  &lt;/device&gt;</line>
+<line></line>
+<line>  &lt;device browser="IE" version="5.0"&gt;</line>
+<line>    &lt;doctype name="invoice"&gt;    </line>
+<line>      &lt;stylesheet href="ie5Invoice.xsl"/&gt;</line>
+<line>    &lt;/doctype&gt;</line>
+<line>    &lt;doctype name="productDescrip, descrip"&gt;</line>
+<line>      &lt;stylesheet href="ie5Descrip.xsl"/&gt;</line>
+<line>    &lt;/doctype&gt;</line>
+<line>  &lt;/device&gt;    </line>
+<line></line>
+<line>&lt;/server-styles-config&gt;</line>
+<line></line>
+<line>This configuration file will, for a WML 1.1 device, choose wml11Invoice.xsl for XML documents with a doctype property of "invoice", and wml11Descrip.xsl for documents with a doctype of either "productDescrip" or "descrip".  The IE section behaves similarly.</line>
+<line>As is the case with &lt;device&gt;, &lt;doctype&gt;'s are processed top-down, and a &lt;doctype&gt; without a "name" attribute will always be selected.  Again, the comparison performed is case-sensitive.</line>
+<line>The direct children of a &lt;device&gt; element cannot mix &lt;doctype&gt; and &lt;stylesheet&gt; elements.  Thus, the following is illegal:</line>
+<line></line>
+<line>&lt;?xml version="1.0" ?&gt;</line>
+<line>&lt;server-styles-config&gt;</line>
+<line>  &lt;device target-markup="WML1.1"&gt;</line>
+<line></line>
+<line>    &lt;doctype name="invoice"&gt;    </line>
+<line>      &lt;stylesheet href="wml11Invoice.xsl"/&gt;</line>
+<line>    &lt;/doctype&gt;</line>
+<line></line>
+<line>	 &lt;!-- Illegal to have stylesheet at this level given</line>
+<line>         that we have a doctype sibling --&gt;</line>
+<line>    &lt;stylesheet href="wml11Descrip.xsl"/&gt;</line>
+<line></line>
+<line>  &lt;/device&gt;</line>
+<line>&lt;/server-styles-config&gt;</line>
+<line></line>
+<header>
+	<line>Encoding and character set issues</line>
+</header>
+<line>Both the code page encoding and the character set can be specified in the configuration file and via browscap.ini.  The code page is used on the server during XSL transformation, and the character set is used by the client browser to render properly.</line>
+<line>XSL ISAPI first looks in the chosen &lt;device&gt; node for charset and encoding, looking for formulations like:</line>
+<line>  &lt;device ...&gt;</line>
+<line>    &lt;output encoding="codepageName" charset="charsetName" /&gt;</line>
+<line>    &lt;stylesheet href="....xsl" /&gt;</line>
+<line>  &lt;/device&gt;</line>
+<line>If "encoding" is not found, the "encoding" property from the browscap.ini database is used if it is defined.  The same is done for "charset".</line>
+<line>Other rules followed:</line>
+<line>* Both character set and the encoding properties are optional in the configuration file and the browscap.ini database. </line>
+<line>* If both a code page and charset are provided, XSL ISAPI validates the code pages for "recognized" charsets and returns an error if they are incorrect (e.g. the char set does not match code page).  If the charset is not recognized we assume that the code page is valid. XSL ISAPI will use the valid code page for the transformation and the charset will be sent to the client. </line>
+<line>* If no code page and no charset are provided, UTF-8 will be used for the transformation and the string "UTF-8" will be used for charset in HTTP header sent to the client.</line>
+<line>* If a charset is provided and no code page is provided, XSL ISAPI will look up the charset in an internal mapping table (in charset.cpp) to determine the code page. The mapping table will only contain known charset strings for IE 4 and IE 5.  If the charset is not found in the mapping table an error will be returned specifying that a code page is required. </line>
+<line>* If a code page is provided and no charset is provided, the code page will be used for the transformation and will set the charset as the same string as the code page string. </line>
+<line></line>
+<header>
+	<line>ASP-produced XML Content</line>
+</header>
+<line>One of XSL ISAPI 2.0's most powerful features is the ability to use ASP to dynamically create XML data that is then pipelined through server-side XSL formatting in a manner identical to the static XML content pipeline described above.  </line>
+<line>In order for an ASP script to be processed correctly, it needs to be stored in a file with a ".pasp" extension and it must result in valid XML.  For instance, consider the following ASP script stored in the file "time.pasp":</line>
+<line></line>
+<line>&lt;?xml version="1.0" ?&gt;</line>
+<line>&lt;?xml-stylesheet type="text/xsl" server-config="myConfig.xml" ?&gt;</line>
+<line>&lt;currentTime&gt;</line>
+<line>	&lt;%= Now %&gt;</line>
+<line>&lt;/currentTime&gt;</line>
+<line></line>
+<line>When "time.pasp" is browsed to, XML data like the following will be generated and then fed into whatever stylesheets are determined by the contents of "myConfig.xml":</line>
+<line></line>
+<line>&lt;?xml version="1.0" ?&gt;</line>
+<line>&lt;?xml-stylesheet type="text/xsl" server-config="myConfig.xml" ?&gt;</line>
+<line>&lt;currentTime&gt;</line>
+<line>	4/28/2000 2:49:59 PM</line>
+<line>&lt;/currentTime&gt;</line>
+<line></line>
+<line>This simple mechanism provides a very powerful, flexible way to dynamically generate and then format XML data, all on the server.</line>
+<header>
+	<line>Details and Restrictions</line>
+</header>
+<line>Because of the way XSL ISAPI 2.0 works, not everything that is expressible in ASP is supported in a .pasp file.  The following ASP features are not supported in .pasp files:</line>
+<line>* Use of server-side objects in the ASP that write directly to the Response object.  Such objects should instead return strings into the ASP script, and the ASP should then pass these onto the Response object via either Response.Write or the &lt;%= %&gt; syntax </line>
+<line>* Inclusion of ASP files via the "&lt;--#include File="..."--&gt;" syntax</line>
+<line>* See the companion KnownIssues.htm document for additional, less significant restrictions and limitations specific to NT 4 implementations.</line>
+<line>Also, the section of the Installation Instructions titled "Additional Steps for Dynamic XML" needs to be followed carefully.</line>
+<header>
+	<line>Error Handling</line>
+</header>
+<line>XSL ISAPI 2.0 provides highly configurable error handling to, among other uses, add customized processing for display of error messages on a variety of devices.</line>
+<line>An example chunk of XML representing an error is included here:</line>
+<line></line>
+<line>&lt;?xml-stylesheet type="text/xsl" </line>
+<line>                 server-config="/xslisapi/errorConfig.xml" ?&gt;</line>
+<line>&lt;error&gt;</line>
+<line>	&lt;status-code&gt;404 - Not Found&lt;/status-code&gt;</line>
+<line>	&lt;url&gt;someURL.xml&lt;/url&gt;</line>
+<line>   &lt;info&gt;Some more information goes here...&lt;/info&gt;</line>
+<line>&lt;/error&gt;</line>
+<line></line>
+<line>This XML is generated by the XSL ISAPI code and is processed through XSL ISAPI just as all other XML content is, in this case using the specified "/xslisapi/errorConfig.xml" configuration file.  This configuration file (and its constituent stylesheets) can be modified to both alter the rendering of the error and to specialize rendering for new devices. </line>
+<header>
+	<line>Post-processing</line>
+</header>
+<line>XSL ISAPI 2.0 supports a limited form of post-processing of the stream that's generated by applying the XSL stylesheets specified in the configuration files.  This post-processing is useful for achieving results that are not expressible through XSL and yet are required for the targeted markup language.  The post-processing handles three situations:</line>
+<line>* Removing closing slashes.  HDML requires that the "ACTION" element be formed as "&lt;ACTION&gt;" and not "&lt;ACTION/&gt;".  This is not well-formed XML, and cannot be generated by XSL.  This is true for other elements as well.</line>
+<line>* Escaping symbols.  The symbol "$" must be escaped for acceptance in an HDML or WML browser.  In WML, it must become "$$".  In HDML, it must become "&amp;dol;"</line>
+<line>* Replacing entities.  HDML and WML need to be able to have a "$" emitted into their stream to allow for variable dereferencing.  If the XSL produces the entity "&amp;var;", the post-processor will replace this with "$" for HDML and WML.</line>
+<line></line>
+<line>The post-processing that occurs is table-driven, and may be modified at XSLISAPI installations by modifying the relevant source file ProcessingStream.cpp.  The variable g_aMimeToStreamTypeMap maps from target MIME type to a table of post-processing parameters that will be used for that MIME type.</line>
+<header>
+	<line>Caching</line>
+</header>
+<line>XSL ISAPI 2.0 supports a simple caching scheme for in-memory caching of both configuration files and XSL stylesheets.  The caching strategy is a variant of a least-recently-used cache and works as follows:  Once every n minutes, any element in the cache that hasn't been accessed in over n minutes is discarded.</line>
+<line>The value of n may be set in a file located at /xslisapi/masterConfig.xml that contains the following XML, with the &lt;config&gt; element at the top level of the document:</line>
+<line></line>
+<line>&lt;config&gt;</line>
+<line>   	 &lt;cache cleanup="1440"/&gt;</line>
+<line>&lt;/config&gt;</line>
+<line></line>
+<line>The above sets the cleanup time for 1440 minutes, or 24 hours.  Setting this value to 0 results in disabling caching entirely.  The default value is 60 minutes.</line>
+<line>On systems where the XSLTemplate object is available (via msxml3.dll), stylesheets will be precompiled and cached as XSLTemplate objects for improved performance.  Otherwise, they are cached as XMLDOM documents.</line>
+<line>XSL Version Information</line>
+<line>XSL ISAPI 2.0 will successfully process XSL stylesheets that are compatible with either msxml.dll or, if it's installed on the system, msxml3.dll (including the XPath/XSLT features of msxml3.dll).</line>
+<header>
+	<line>Backwards compatibility with XSL ISAPI 1.1</line>
+</header>
+<line>This section is only of interest to current users of XSL ISAPI 1.1 that want to port their work over to XSL ISAPI 2.0.</line>
+<line>XSL ISAPI 2.0 is substantially backwards compatible with XSL ISAPI 1.1:</line>
+<line>* The contents of the XSL ISAPI 1.1's configuration file will behave as they did for XSL ISAPI 1.1, but the file itself must now be located in the xslisapi virtual directory at \xslisapi\masterConfig.xml.</line>
+<line>* Settings in masterConfig.xml are overridden by any setting destined for XSL ISAPI 2.0.  For example, if an &lt;?xml-stylesheet?&gt; processing instruction contains a server-config attribute pointing to an XSL ISAPI 2.0 configuration file, this will be used in favor of any attributes that match &lt;client&gt; elements in the masterConfig.xml file.</line>
+<line>* While the error schema is the same in 2.0 as in 1.1, 2.0 does not look for an errors.xsl file, due to the more general error handling mechanism present.  However, the errors.xsl file can be specified as a device stylesheet in the errorConfig.xml file if desired.</line>
+<line>* Encoding will work when using version 2.0 with XSL ISAPI 1.1 config files, if the charset and code page encoding worked under version 1.1.  The limitations of code page and charset compatability that currently exist with 1.1 config files will continue to persist, however if it worked in version 1.1 it will work in version 2.0.</line>
+<line>Samples</line>
+<line>The XSL ISAPI distribution contains a number of samples.  If the Installation instructions above have been followed, these can be reached at http://localhost/xslisapi/Samples.</line>
+<line>Each sample presents a minimal demonstration of a single feature of XSL ISAPI, as follows:</line>
+<line>Sample A</line>
+<line>The most basic demonstration of choosing stylesheets based upon device characteristics, and applying the chosen stylesheet to a static XML document. </line>
+<line>Sample B</line>
+<line>Demonstrates chaining of XSL stylesheets.</line>
+<line>Sample C</line>
+<line>Demonstrates selection of stylesheets based upon both device characteristics and document type.</line>
+<line>Sample D</line>
+<line>Demonstrates the use of ASP to dynamically generate XML and then have a result pass through stylesheet selection similar to Sample A.</line>
+<line>Sample E</line>
+<line>Demonstrates the use of a character set encoding.</line>
+<line>Sample F</line>
+<line>A more involved sample that dynamically generates XML by breaking up a large XML document into chunks small enough to be held by the target device.  This is motivated by the fact that cell-phone browsers typically have limited memory capacity.</line>
+<line></line>
+<header>
+	<line>Known Issues</line>
+</header>
+<line>Please see the companion document KnownIssues.htm for a list of issues that a user of the system may want to be aware of.  Various "Tips and Tricks" are also included in this document.  It can be found at the top level of the XSL ISAPI distribution.  If you've installed according to the instructions above, it can also be found at http://localhost/xslisapi/KnownIssues.htm. </line>
+<line>Appendix: Source Code and Manifest</line>
+<line>XSL ISAPI ships with files needed at runtime as well as the source to build the xslisapi2 DLL.  These are described below.</line>
+<line></line>
+<header>
+	<line>Runtime Files</line>
+</header>
+<line>browscap-add.ini</line>
+<line>Contains a section to add to browscap.ini.  See installation instructions.</line>
+<line>errorConfig.xml</line>
+<line>Specifies which XSL files to apply to format errors based upon device characteristics.</line>
+<line>errorHTML.xsl</line>
+<line>Error formatting for HTML.</line>
+<line>errorWML11.xsl</line>
+<line>Error formatting for WML 1.1</line>
+<line>global.asa</line>
+<line>Needed for PASP file processing.  See installation instructions.</line>
+<line>RedirectorPASP.asp</line>
+<line>ISAPI Filter redirects PASP files to this ASP script.  Needed for PASP file processing.  There is an alternate version of this file for Microsoft NT4. Both files contain comments that identify the corresponding operating system. See installation instructions. </line>
+<line>RedirectorXML.asp</line>
+<line>ISAPI Filter redirects XML files to this ASP script.</line>
+<line>xslisapi2.dll</line>
+<line>Runtime containing ISAPI Filter as well as required COM Server-Sde Objects.</line>
+<line></line>
+<header>
+	<line>Source Files - all in the Source/ directory</line>
+</header>
+<line>StdAfx.h</line>
+<line>Main location for include files</line>
+<line>XmlServerDoc.{h,cpp,rgs}</line>
+<line>Main logic for stylesheet selection and XSL processing.</line>
+<line>IISFilter.cpp</line>
+<line>Code for the ISAPI filter itself.</line>
+<line>PreProcess.{h,cpp}</line>
+<line>Convert PASP file into ASP file</line>
+<line>ASPPreProcessor.{h,cpp,rgs}</line>
+<line>Request broker for preprocessing tasks, also determines whether preprocessing is necessary.</line>
+<line>ProcessingStream.h</line>
+<line>Post-processing</line>
+<line>Xmlcache.{h,cpp}, hashtable.{h,cpp}</line>
+<line>Implements simple in-memory cache for XML documents (and IXSLTemplates)</line>
+<line>Utils.{h,cpp}</line>
+<line>Utilities for: XML, ASP, error handling, string operations, debugging</line>
+<line>Charset.{h,cpp}</line>
+<line>Utilities for charset and encoding issues.</line>
+<line>PIParse.{h,cpp}</line>
+<line>Simple class for parsing XML processing instructions.</line>
+<line>Msxml3.tlb</line>
+<line>Type-library information extracted from msxml3.dll.  Referenced by StdAfx.h.</line>
+<line>Global.{h,cpp}</line>
+<line>Global state</line>
+<line>Xslisapi2.{cpp,def,dsp,idl,rc},  StdAfx.cpp, Resource.h, xslisapiversion.h</line>
+<line>Visual Studio boilerplate files for the project.</line>
+<line></line>
+<line>1 This behavior is useful for allowing a specific configuration to pass-through to the browser, but for unmatched device configurations to be processed on the server.</line>
+</document>

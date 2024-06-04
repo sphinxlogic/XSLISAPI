@@ -1,0 +1,12 @@
+; xslisapi2.def : Declares the module parameters.
+
+LIBRARY      "xslisapi2.DLL"
+
+EXPORTS
+        GetFilterVersion        @1      PRIVATE
+        HttpFilterProc          @2      PRIVATE
+        TerminateFilter         @3      PRIVATE
+        DllCanUnloadNow         @4      PRIVATE
+        DllGetClassObject       @5      PRIVATE
+        DllRegisterServer       @6      PRIVATE
+        DllUnregisterServer     @7      PRIVATE

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="installtestConfig.xml" ?>
+
+<test>
+<comment1>Your XSL ISAPI 2 installation is </comment1>
+<B> NOT </B>
+<comment2>successfully processing xml files.</comment2>
+
+</test>
+
+

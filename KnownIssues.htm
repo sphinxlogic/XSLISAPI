@@ -1,0 +1,947 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office" xmlns:w = 
+"urn:schemas-microsoft-com:office:word"><HEAD><TITLE>Known Issues for XSL ISAPI Filter 2.0</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content=Word.Document name=ProgId>
+<META content="MSHTML 5.00.2920.0" name=GENERATOR>
+<META content="Microsoft Word 9" name=Originator><LINK 
+href="./kkk_files/filelist.xml" rel=File-List><LINK 
+href="./kkk_files/preview.wmf" rel=Preview><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>Server-side XSL formatting for multiple device-types</o:Subject>
+  <o:Author>Greg Schechter</o:Author>
+  <o:Keywords>xsl xml isapi device file </o:Keywords>
+  <o:Description>&#13;&#10;</o:Description>
+  <o:Template>MSDN20.DOT</o:Template>
+  <o:LastAuthor>Greg Schechter</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1672</o:TotalTime>
+  <o:LastPrinted>1997-04-10T15:55:00Z</o:LastPrinted>
+  <o:Created>2000-05-30T15:48:00Z</o:Created>
+  <o:LastSaved>2000-05-30T15:48:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>1002</o:Words>
+  <o:Characters>5712</o:Characters>
+  <o:Company>MSFT</o:Company>
+  <o:Lines>47</o:Lines>
+  <o:Paragraphs>11</o:Paragraphs>
+  <o:CharactersWithSpaces>7014</o:CharactersWithSpaces>
+  <o:Version>9.2720</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:UpdateStylesOnOpen/>
+  <w:DrawingGridHorizontalSpacing>3.75 pt</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>5.1 pt</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<STYLE>@font-face {
+	font-family: Wingdings;
+}
+@font-face {
+	font-family: Tahoma;
+}
+@font-face {
+	font-family: Verdana;
+}
+@font-face {
+	font-family: Microsoft Logo 95;
+}
+@font-face {
+	font-family: Garamond;
+}
+P.MsoNormal {
+	COLOR: fuchsia; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal
+}
+LI.MsoNormal {
+	COLOR: fuchsia; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal
+}
+DIV.MsoNormal {
+	COLOR: fuchsia; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal
+}
+H1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 18pt; FONT-WEIGHT: bold; LINE-HEIGHT: 20pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 1; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+H2 {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 18pt; FONT-WEIGHT: bold; LINE-HEIGHT: 20pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 2; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+H3 {
+	COLOR: silver; FONT-FAMILY: Verdana; FONT-SIZE: 18pt; FONT-WEIGHT: bold; LINE-HEIGHT: 20pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 3; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+H4 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 18pt; FONT-WEIGHT: normal; LINE-HEIGHT: 20pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-style-next: "Text\,t"; mso-outline-level: 4; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+H5 {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 18pt; FONT-WEIGHT: normal; LINE-HEIGHT: 20pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-style-next: "Text\,t"; mso-outline-level: 5; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+H6 {
+	COLOR: silver; FONT-FAMILY: Verdana; FONT-SIZE: 18pt; FONT-WEIGHT: normal; LINE-HEIGHT: 20pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-style-next: "Text\,t"; mso-outline-level: 6; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+P.MsoHeading7 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 16pt; FONT-WEIGHT: bold; LINE-HEIGHT: 18pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 7; mso-bidi-font-size: 12.0pt; mso-font-kerning: 12.0pt
+}
+LI.MsoHeading7 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 16pt; FONT-WEIGHT: bold; LINE-HEIGHT: 18pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 7; mso-bidi-font-size: 12.0pt; mso-font-kerning: 12.0pt
+}
+DIV.MsoHeading7 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 16pt; FONT-WEIGHT: bold; LINE-HEIGHT: 18pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 7; mso-bidi-font-size: 12.0pt; mso-font-kerning: 12.0pt
+}
+P.MsoHeading8 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 13pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 8; mso-bidi-font-size: 12.0pt; mso-font-kerning: 12.0pt; mso-bidi-font-style: italic
+}
+LI.MsoHeading8 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 13pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 8; mso-bidi-font-size: 12.0pt; mso-font-kerning: 12.0pt; mso-bidi-font-style: italic
+}
+DIV.MsoHeading8 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 13pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 8; mso-bidi-font-size: 12.0pt; mso-font-kerning: 12.0pt; mso-bidi-font-style: italic
+}
+P.MsoHeading9 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 9; mso-bidi-font-size: 11.0pt; mso-font-kerning: 12.0pt
+}
+LI.MsoHeading9 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 9; mso-bidi-font-size: 11.0pt; mso-font-kerning: 12.0pt
+}
+DIV.MsoHeading9 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 9pt 0in 3pt -0.25in; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-outline-level: 9; mso-bidi-font-size: 11.0pt; mso-font-kerning: 12.0pt
+}
+P.MsoIndex1 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 9pt; TEXT-INDENT: -9pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+LI.MsoIndex1 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 9pt; TEXT-INDENT: -9pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+DIV.MsoIndex1 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 9pt; TEXT-INDENT: -9pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+P.MsoIndex2 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 27pt; TEXT-INDENT: -9pt; mso-style-parent: "Index 1\,idx1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+LI.MsoIndex2 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 27pt; TEXT-INDENT: -9pt; mso-style-parent: "Index 1\,idx1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+DIV.MsoIndex2 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 27pt; TEXT-INDENT: -9pt; mso-style-parent: "Index 1\,idx1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+P.MsoIndex3 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 45pt; TEXT-INDENT: -9pt; mso-style-parent: "Index 1\,idx1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+LI.MsoIndex3 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 45pt; TEXT-INDENT: -9pt; mso-style-parent: "Index 1\,idx1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+DIV.MsoIndex3 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in 3pt 45pt; TEXT-INDENT: -9pt; mso-style-parent: "Index 1\,idx1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt
+}
+P.MsoToc1 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Heading 9\,h9\,Third Subheading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial; mso-bidi-font-weight: normal; mso-bidi-font-size: 11.0pt; mso-font-kerning: 12.0pt; tab-stops: .25in
+}
+LI.MsoToc1 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Heading 9\,h9\,Third Subheading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial; mso-bidi-font-weight: normal; mso-bidi-font-size: 11.0pt; mso-font-kerning: 12.0pt; tab-stops: .25in
+}
+DIV.MsoToc1 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Heading 9\,h9\,Third Subheading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial; mso-bidi-font-weight: normal; mso-bidi-font-size: 11.0pt; mso-font-kerning: 12.0pt; tab-stops: .25in
+}
+P.MsoToc2 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoToc2 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoToc2 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+P.MsoToc3 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "TOC 2\,toc2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoToc3 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "TOC 2\,toc2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoToc3 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "TOC 2\,toc2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+P.MsoToc4 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.75in; mso-style-parent: "TOC 2\,toc2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoToc4 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.75in; mso-style-parent: "TOC 2\,toc2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoToc4 {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.75in; mso-style-parent: "TOC 2\,toc2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+P.MsoFootnoteText {
+	COLOR: blue; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoFootnoteText {
+	COLOR: blue; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoFootnoteText {
+	COLOR: blue; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+P.MsoCommentText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoCommentText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoCommentText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+P.MsoHeader {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 0in 1pt 0pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; tab-stops: right 446.0pt; mso-border-bottom-alt: solid olive .5pt; mso-padding-alt: 0in 0in 1.0pt 0in
+}
+LI.MsoHeader {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 0in 1pt 0pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; tab-stops: right 446.0pt; mso-border-bottom-alt: solid olive .5pt; mso-padding-alt: 0in 0in 1.0pt 0in
+}
+DIV.MsoHeader {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 0in 1pt 0pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; tab-stops: right 446.0pt; mso-border-bottom-alt: solid olive .5pt; mso-padding-alt: 0in 0in 1.0pt 0in
+}
+P.MsoFooter {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 0in 1pt 0pt; mso-style-parent: "Header\,h"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; tab-stops: right 446.0pt
+}
+LI.MsoFooter {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 0in 1pt 0pt; mso-style-parent: "Header\,h"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; tab-stops: right 446.0pt
+}
+DIV.MsoFooter {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 0in 1pt 0pt; mso-style-parent: "Header\,h"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; tab-stops: right 446.0pt
+}
+P.MsoIndexHeading {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 13pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Index 1\,idx1"; mso-outline-level: 8; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+LI.MsoIndexHeading {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 13pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Index 1\,idx1"; mso-outline-level: 8; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+DIV.MsoIndexHeading {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 13pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Index 1\,idx1"; mso-outline-level: 8; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt
+}
+SPAN.MsoFootnoteReference {
+	COLOR: blue; VERTICAL-ALIGN: super
+}
+SPAN.MsoCommentReference {
+	mso-bidi-font-size: 8.0pt
+}
+SPAN.MsoPageNumber {
+	COLOR: olive; FONT-WEIGHT: bold; mso-ansi-font-size: 8.0pt; mso-ascii-font-family: Verdana; mso-hansi-font-family: Verdana
+}
+P.MsoBodyTextIndent {
+	COLOR: windowtext; FONT-FAMILY: Garamond; FONT-SIZE: 12pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 6pt 1.25in; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+LI.MsoBodyTextIndent {
+	COLOR: windowtext; FONT-FAMILY: Garamond; FONT-SIZE: 12pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 6pt 1.25in; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+DIV.MsoBodyTextIndent {
+	COLOR: windowtext; FONT-FAMILY: Garamond; FONT-SIZE: 12pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 6pt 1.25in; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"
+}
+A:link {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlink {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single
+}
+A:visited {
+	COLOR: purple; TEXT-DECORATION: underline; text-underline: single
+}
+SPAN.MsoHyperlinkFollowed {
+	COLOR: purple; TEXT-DECORATION: underline; text-underline: single
+}
+P.MsoDocumentMap {
+	BACKGROUND: navy; COLOR: fuchsia; FONT-FAMILY: Tahoma; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-weight: normal
+}
+LI.MsoDocumentMap {
+	BACKGROUND: navy; COLOR: fuchsia; FONT-FAMILY: Tahoma; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-weight: normal
+}
+DIV.MsoDocumentMap {
+	BACKGROUND: navy; COLOR: fuchsia; FONT-FAMILY: Tahoma; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-weight: normal
+}
+P {
+	COLOR: black; FONT-FAMILY: "Times New Roman"; FONT-SIZE: 12pt; LINE-HEIGHT: 18pt; MARGIN: 6pt 0in 12pt; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"
+}
+P.Text {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text\,t"
+}
+LI.Text {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text\,t"
+}
+DIV.Text {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text\,t"
+}
+P.Figure {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in; mso-style-parent: "Text\,t"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-style-name: "Figure\,fig"
+}
+LI.Figure {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in; mso-style-parent: "Text\,t"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-style-name: "Figure\,fig"
+}
+DIV.Figure {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in; mso-style-parent: "Text\,t"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-style-name: "Figure\,fig"
+}
+P.Code {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt; mso-style-parent: ""; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code\,c"
+}
+LI.Code {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt; mso-style-parent: ""; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code\,c"
+}
+DIV.Code {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt; mso-style-parent: ""; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code\,c"
+}
+P.LabelinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text in List 2\,t2"; mso-style-name: "Label in List 2\,l2"
+}
+LI.LabelinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text in List 2\,t2"; mso-style-name: "Label in List 2\,l2"
+}
+DIV.LabelinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text in List 2\,t2"; mso-style-name: "Label in List 2\,l2"
+}
+P.TextinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text in List 2\,t2"
+}
+LI.TextinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text in List 2\,t2"
+}
+DIV.TextinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text in List 2\,t2"
+}
+P.Label {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-style-name: "Label\,l"
+}
+LI.Label {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-style-name: "Label\,l"
+}
+DIV.Label {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text\,t"; mso-style-name: "Label\,l"
+}
+P.NumberedList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .5in; mso-style-name: "Numbered List 2\,nl2"; mso-list: l62 level1 lfo63
+}
+LI.NumberedList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .5in; mso-style-name: "Numbered List 2\,nl2"; mso-list: l62 level1 lfo63
+}
+DIV.NumberedList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .5in; mso-style-name: "Numbered List 2\,nl2"; mso-list: l62 level1 lfo63
+}
+P.Syntax {
+	BACKGROUND: #e2e2e2; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 5pt 0pt 2pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 0in 4.0pt 3.0pt 2.0pt; mso-style-name: "Syntax\,s"; mso-shading: windowtext; mso-pattern: gray-50 silver; mso-border-alt: solid white .5pt
+}
+LI.Syntax {
+	BACKGROUND: #e2e2e2; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 5pt 0pt 2pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 0in 4.0pt 3.0pt 2.0pt; mso-style-name: "Syntax\,s"; mso-shading: windowtext; mso-pattern: gray-50 silver; mso-border-alt: solid white .5pt
+}
+DIV.Syntax {
+	BACKGROUND: #e2e2e2; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 5pt 0pt 2pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 0in 4.0pt 3.0pt 2.0pt; mso-style-name: "Syntax\,s"; mso-shading: windowtext; mso-pattern: gray-50 silver; mso-border-alt: solid white .5pt
+}
+P.TableFootnote {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote\,tf"
+}
+LI.TableFootnote {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote\,tf"
+}
+DIV.TableFootnote {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote\,tf"
+}
+SPAN.CodeEmbedded {
+	COLOR: navy; mso-ansi-font-size: 10.0pt; mso-ascii-font-family: "Courier New"; mso-hansi-font-family: "Courier New"; mso-style-name: "Code Embedded\,ce"
+}
+SPAN.LabelEmbedded {
+	FONT-WEIGHT: bold; mso-ansi-font-size: 10.0pt; mso-ascii-font-family: Verdana; mso-hansi-font-family: Verdana; mso-style-name: "Label Embedded\,le"
+}
+SPAN.LinkText {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: double; mso-style-name: "Link Text\,lt"
+}
+SPAN.LinkTextPopup {
+	COLOR: blue; TEXT-DECORATION: underline; text-underline: single; mso-style-name: "Link Text Popup\,ltp"
+}
+SPAN.LinkID {
+	COLOR: red; DISPLAY: none; mso-style-name: "Link ID\,lid"; mso-hide: all
+}
+SPAN.Bold {
+	FONT-WEIGHT: bold; mso-style-name: "Bold\,b"
+}
+SPAN.BoldItalic {
+	FONT-STYLE: italic; FONT-WEIGHT: bold; mso-style-name: "Bold Italic\,bi"
+}
+SPAN.Italic {
+	FONT-STYLE: italic; mso-style-name: "Italic\,i"
+}
+SPAN.Strikethrough {
+	TEXT-DECORATION: line-through; mso-style-name: "Strikethrough\,strike"
+}
+SPAN.Superscript {
+	VERTICAL-ALIGN: super; mso-style-name: "Superscript\,sup"
+}
+SPAN.Subscript {
+	VERTICAL-ALIGN: sub; mso-style-name: "Subscript\,sub"
+}
+P.CodeinList2 {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt 0.5in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code in List 2\,c2"
+}
+LI.CodeinList2 {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt 0.5in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code in List 2\,c2"
+}
+DIV.CodeinList2 {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt 0.5in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code in List 2\,c2"
+}
+P.FigureinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in 6pt 0.5in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 2\,t2"; mso-style-name: "Figure in List 2\,fig2"
+}
+LI.FigureinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in 6pt 0.5in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 2\,t2"; mso-style-name: "Figure in List 2\,fig2"
+}
+DIV.FigureinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in 6pt 0.5in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 2\,t2"; mso-style-name: "Figure in List 2\,fig2"
+}
+P.TableFootnoteinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt 0.5in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 2\,t2"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote in List 2\,tf2"
+}
+LI.TableFootnoteinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt 0.5in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 2\,t2"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote in List 2\,tf2"
+}
+DIV.TableFootnoteinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt 0.5in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 2\,t2"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote in List 2\,tf2"
+}
+P.LabelinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text in List 1\,t1"; mso-style-name: "Label in List 1\,l1"
+}
+LI.LabelinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text in List 1\,t1"; mso-style-name: "Label in List 1\,l1"
+}
+DIV.LabelinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Text in List 1\,t1"; mso-style-name: "Label in List 1\,l1"
+}
+P.TextinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text in List 1\,t1"
+}
+LI.TextinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text in List 1\,t1"
+}
+DIV.TextinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text in List 1\,t1"
+}
+P.CodeinList1 {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt 0.25in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code in List 1\,c1"
+}
+LI.CodeinList1 {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt 0.25in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code in List 1\,c1"
+}
+DIV.CodeinList1 {
+	COLOR: navy; FONT-FAMILY: "Courier New"; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt 0.25in; mso-style-parent: "Code\,c"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Code in List 1\,c1"
+}
+P.FigureinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in 6pt 0.25in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 1\,t1"; mso-style-name: "Figure in List 1\,fig1"
+}
+LI.FigureinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in 6pt 0.25in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 1\,t1"; mso-style-name: "Figure in List 1\,fig1"
+}
+DIV.FigureinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 6pt 0in 6pt 0.25in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 1\,t1"; mso-style-name: "Figure in List 1\,fig1"
+}
+P.TableFootnoteinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt 0.25in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 1\,t1"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote in List 1\,tf1"
+}
+LI.TableFootnoteinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt 0.25in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 1\,t1"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote in List 1\,tf1"
+}
+DIV.TableFootnoteinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 2pt 0in 4pt 0.25in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text in List 1\,t1"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Footnote in List 1\,tf1"
+}
+SPAN.HTML {
+	BACKGROUND: #ddffdd; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; mso-ansi-font-size: 10.0pt; mso-ascii-font-family: "Courier New"; mso-hansi-font-family: "Courier New"; mso-style-name: HTML; mso-shading: windowtext; mso-pattern: gray-25 lime
+}
+P.AlertText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text\,at"
+}
+LI.AlertText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text\,at"
+}
+DIV.AlertText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text\,at"
+}
+P.AlertTextinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text in List 1\,at1"
+}
+LI.AlertTextinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text in List 1\,at1"
+}
+DIV.AlertTextinList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; mso-style-parent: "Text in List 1\,t1"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text in List 1\,at1"
+}
+P.AlertTextinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.75in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text in List 2\,at2"
+}
+LI.AlertTextinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.75in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text in List 2\,at2"
+}
+DIV.AlertTextinList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.75in; mso-style-parent: "Text in List 2\,t2"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Alert Text in List 2\,at2"
+}
+P.RevisionHistory {
+	COLOR: purple; DISPLAY: none; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 1in 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Revision History\,rh"; mso-hide: all
+}
+LI.RevisionHistory {
+	COLOR: purple; DISPLAY: none; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 1in 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Revision History\,rh"; mso-hide: all
+}
+DIV.RevisionHistory {
+	COLOR: purple; DISPLAY: none; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 1in 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Revision History\,rh"; mso-hide: all
+}
+P.BulletedList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .25in; mso-style-name: "Bulleted List 1\,bl1"; mso-list: l40 level1 lfo55
+}
+LI.BulletedList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .25in; mso-style-name: "Bulleted List 1\,bl1"; mso-list: l40 level1 lfo55
+}
+DIV.BulletedList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .25in; mso-style-name: "Bulleted List 1\,bl1"; mso-list: l40 level1 lfo55
+}
+P.TextIndented {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text Indented\,ti"
+}
+LI.TextIndented {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text Indented\,ti"
+}
+DIV.TextIndented {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-name: "Text Indented\,ti"
+}
+P.BulletedList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .5in; mso-style-name: "Bulleted List 2\,bl2"; mso-list: l66 level1 lfo61
+}
+LI.BulletedList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .5in; mso-style-name: "Bulleted List 2\,bl2"; mso-list: l66 level1 lfo61
+}
+DIV.BulletedList2 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.5in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .5in; mso-style-name: "Bulleted List 2\,bl2"; mso-list: l66 level1 lfo61
+}
+P.DefinedTerm {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 0pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Definition\,d"; mso-style-name: "Defined Term\,dt"
+}
+LI.DefinedTerm {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 0pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Definition\,d"; mso-style-name: "Defined Term\,dt"
+}
+DIV.DefinedTerm {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 0pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Definition\,d"; mso-style-name: "Defined Term\,dt"
+}
+P.Definition {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 0in 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Defined Term\,dt"; mso-style-name: "Definition\,d"
+}
+LI.Definition {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 0in 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Defined Term\,dt"; mso-style-name: "Definition\,d"
+}
+DIV.Definition {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 0in 0in 3pt 0.25in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Defined Term\,dt"; mso-style-name: "Definition\,d"
+}
+P.NumberedList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .25in; mso-style-name: "Numbered List 1\,nl1"; mso-list: l67 level1 lfo57
+}
+LI.NumberedList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .25in; mso-style-name: "Numbered List 1\,nl1"; mso-list: l67 level1 lfo57
+}
+DIV.NumberedList1 {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in 3pt 0.25in; TEXT-INDENT: -0.25in; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; tab-stops: list .25in; mso-style-name: "Numbered List 1\,nl1"; mso-list: l67 level1 lfo57
+}
+P.GlueLinkText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-style-name: "Glue Link Text\,glt"
+}
+LI.GlueLinkText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-style-name: "Glue Link Text\,glt"
+}
+DIV.GlueLinkText {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-style-name: "Glue Link Text\,glt"
+}
+P.IndexTag {
+	COLOR: green; DISPLAY: none; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 1in 0pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-name: "Index Tag\,it"; mso-hide: all
+}
+LI.IndexTag {
+	COLOR: green; DISPLAY: none; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 1in 0pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-name: "Index Tag\,it"; mso-hide: all
+}
+DIV.IndexTag {
+	COLOR: green; DISPLAY: none; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 1in 0pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-name: "Index Tag\,it"; mso-hide: all
+}
+SPAN.CodeFeaturedElement {
+	COLOR: navy; FONT-WEIGHT: bold; mso-ansi-font-size: 10.0pt; mso-ascii-font-family: "Courier New"; mso-hansi-font-family: "Courier New"; mso-style-name: "Code Featured Element\,cfe"
+}
+P.Copyright {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Copyright\,copy"
+}
+LI.Copyright {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Copyright\,copy"
+}
+DIV.Copyright {
+	COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Copyright\,copy"
+}
+SPAN.MultilanguageMarkerAuto {
+	COLOR: gray; mso-ansi-font-size: 8.0pt; mso-ascii-font-family: Verdana; mso-hansi-font-family: Verdana; mso-style-name: "Multilanguage Marker Auto\,mma"
+}
+P.PrintDivisionTitle {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 20pt; FONT-WEIGHT: bold; LINE-HEIGHT: 22pt; MARGIN: 9pt 0in 9pt -0.25in; TEXT-ALIGN: right; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-outline-level: 1; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt; mso-style-name: "Print Division Title\,pdt"
+}
+LI.PrintDivisionTitle {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 20pt; FONT-WEIGHT: bold; LINE-HEIGHT: 22pt; MARGIN: 9pt 0in 9pt -0.25in; TEXT-ALIGN: right; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-outline-level: 1; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt; mso-style-name: "Print Division Title\,pdt"
+}
+DIV.PrintDivisionTitle {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 20pt; FONT-WEIGHT: bold; LINE-HEIGHT: 22pt; MARGIN: 9pt 0in 9pt -0.25in; TEXT-ALIGN: right; mso-style-parent: "Heading 1\,h1\,Level 1 Topic Heading"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-outline-level: 1; mso-bidi-font-size: 10.0pt; mso-font-kerning: 12.0pt; mso-style-name: "Print Division Title\,pdt"
+}
+P.PrintDivisionNumber {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LETTER-SPACING: 6pt; LINE-HEIGHT: 13pt; MARGIN: 9pt -6pt 0pt -0.25in; TEXT-ALIGN: right; TEXT-TRANSFORM: uppercase; mso-style-parent: "Print Division Title\,pdt"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Print Division Title\,pdt"; mso-outline-level: 1; mso-font-kerning: 12.0pt; mso-style-name: "Print Division Number\,pdn"
+}
+LI.PrintDivisionNumber {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LETTER-SPACING: 6pt; LINE-HEIGHT: 13pt; MARGIN: 9pt -6pt 0pt -0.25in; TEXT-ALIGN: right; TEXT-TRANSFORM: uppercase; mso-style-parent: "Print Division Title\,pdt"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Print Division Title\,pdt"; mso-outline-level: 1; mso-font-kerning: 12.0pt; mso-style-name: "Print Division Number\,pdn"
+}
+DIV.PrintDivisionNumber {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LETTER-SPACING: 6pt; LINE-HEIGHT: 13pt; MARGIN: 9pt -6pt 0pt -0.25in; TEXT-ALIGN: right; TEXT-TRANSFORM: uppercase; mso-style-parent: "Print Division Title\,pdt"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Print Division Title\,pdt"; mso-outline-level: 1; mso-font-kerning: 12.0pt; mso-style-name: "Print Division Number\,pdn"
+}
+P.PrintMSCorp {
+	COLOR: olive; FONT-FAMILY: "Microsoft Logo 95"; FONT-SIZE: 13pt; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt; TEXT-ALIGN: right; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Print MS Corp\,pms"
+}
+LI.PrintMSCorp {
+	COLOR: olive; FONT-FAMILY: "Microsoft Logo 95"; FONT-SIZE: 13pt; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt; TEXT-ALIGN: right; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Print MS Corp\,pms"
+}
+DIV.PrintMSCorp {
+	COLOR: olive; FONT-FAMILY: "Microsoft Logo 95"; FONT-SIZE: 13pt; LINE-HEIGHT: 15pt; MARGIN: 9pt 0in 3pt; TEXT-ALIGN: right; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Print MS Corp\,pms"
+}
+P.Slugline {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 7pt; LINE-HEIGHT: 9pt; MARGIN: 0in 0in 0pt; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Slugline\,slug"; mso-element: frame; mso-element-frame-height: 45.0pt; mso-element-frame-hspace: 9.0pt; mso-element-frame-vspace: 9.0pt; mso-element-wrap: around; mso-element-anchor-vertical: page; mso-element-anchor-horizontal: margin; mso-element-top: 730.05pt; mso-height-rule: exactly
+}
+LI.Slugline {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 7pt; LINE-HEIGHT: 9pt; MARGIN: 0in 0in 0pt; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Slugline\,slug"; mso-element: frame; mso-element-frame-height: 45.0pt; mso-element-frame-hspace: 9.0pt; mso-element-frame-vspace: 9.0pt; mso-element-wrap: around; mso-element-anchor-vertical: page; mso-element-anchor-horizontal: margin; mso-element-top: 730.05pt; mso-height-rule: exactly
+}
+DIV.Slugline {
+	COLOR: olive; FONT-FAMILY: Verdana; FONT-SIZE: 7pt; LINE-HEIGHT: 9pt; MARGIN: 0in 0in 0pt; mso-style-parent: ""; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Slugline\,slug"; mso-element: frame; mso-element-frame-height: 45.0pt; mso-element-frame-hspace: 9.0pt; mso-element-frame-vspace: 9.0pt; mso-element-wrap: around; mso-element-anchor-vertical: page; mso-element-anchor-horizontal: margin; mso-element-top: 730.05pt; mso-height-rule: exactly
+}
+P.MultilanguageMarkerExplicitBegin {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Multilanguage Marker Explicit Begin\,mmeb"
+}
+LI.MultilanguageMarkerExplicitBegin {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Multilanguage Marker Explicit Begin\,mmeb"
+}
+DIV.MultilanguageMarkerExplicitBegin {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; mso-style-name: "Multilanguage Marker Explicit Begin\,mmeb"
+}
+P.MultilanguageMarkerExplicitEnd {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; TEXT-DECORATION: underline; mso-style-parent: "Multilanguage Marker Explicit Begin\,mmeb"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; text-underline: wave; mso-style-name: "Multilanguage Marker Explicit End\,mmee"
+}
+LI.MultilanguageMarkerExplicitEnd {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; TEXT-DECORATION: underline; mso-style-parent: "Multilanguage Marker Explicit Begin\,mmeb"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; text-underline: wave; mso-style-name: "Multilanguage Marker Explicit End\,mmee"
+}
+DIV.MultilanguageMarkerExplicitEnd {
+	COLOR: gray; FONT-FAMILY: Verdana; FONT-SIZE: 8pt; LINE-HEIGHT: 11pt; MARGIN: 3pt 0in; TEXT-DECORATION: underline; mso-style-parent: "Multilanguage Marker Explicit Begin\,mmeb"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-size: 10.0pt; text-underline: wave; mso-style-name: "Multilanguage Marker Explicit End\,mmee"
+}
+P.TableSpacing {
+	COLOR: fuchsia; FONT-FAMILY: Verdana; FONT-SIZE: 6pt; LINE-HEIGHT: 6pt; MARGIN: 0in 0in 0pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Spacing\,ts"
+}
+LI.TableSpacing {
+	COLOR: fuchsia; FONT-FAMILY: Verdana; FONT-SIZE: 6pt; LINE-HEIGHT: 6pt; MARGIN: 0in 0in 0pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Spacing\,ts"
+}
+DIV.TableSpacing {
+	COLOR: fuchsia; FONT-FAMILY: Verdana; FONT-SIZE: 6pt; LINE-HEIGHT: 6pt; MARGIN: 0in 0in 0pt; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-style-next: "Text\,t"; mso-bidi-font-size: 10.0pt; mso-style-name: "Table Spacing\,ts"
+}
+P.LabelforProcedures {
+	COLOR: navy; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Label\,l"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Numbered List 1\,nl1"; mso-style-name: "Label for Procedures\,lp"
+}
+LI.LabelforProcedures {
+	COLOR: navy; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Label\,l"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Numbered List 1\,nl1"; mso-style-name: "Label for Procedures\,lp"
+}
+DIV.LabelforProcedures {
+	COLOR: navy; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: bold; LINE-HEIGHT: 13pt; MARGIN: 3pt 0in; mso-style-parent: "Label\,l"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-weight: normal; mso-style-next: "Numbered List 1\,nl1"; mso-style-name: "Label for Procedures\,lp"
+}
+P.FigureImageMapPlaceholder {
+	BACKGROUND: #b4ffff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 3pt 0in 3pt 2pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 3.0pt 4.0pt 4.0pt 2.0pt; mso-style-name: "Figure Image Map Placeholder\,fimp"; mso-shading: windowtext; mso-pattern: gray-50 aqua; mso-border-alt: solid white .5pt
+}
+LI.FigureImageMapPlaceholder {
+	BACKGROUND: #b4ffff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 3pt 0in 3pt 2pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 3.0pt 4.0pt 4.0pt 2.0pt; mso-style-name: "Figure Image Map Placeholder\,fimp"; mso-shading: windowtext; mso-pattern: gray-50 aqua; mso-border-alt: solid white .5pt
+}
+DIV.FigureImageMapPlaceholder {
+	BACKGROUND: #b4ffff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: normal; MARGIN: 3pt 0in 3pt 2pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Figure\,fig"; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 3.0pt 4.0pt 4.0pt 2.0pt; mso-style-name: "Figure Image Map Placeholder\,fimp"; mso-shading: windowtext; mso-pattern: gray-50 aqua; mso-border-alt: solid white .5pt
+}
+P.SamplesButtonMarker {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 0in 0in 0pt 4pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 2.0pt 4.0pt 3.0pt 2.0pt; mso-style-name: "Samples Button Marker\,sbm"; mso-border-alt: solid blue .5pt
+}
+LI.SamplesButtonMarker {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 0in 0in 0pt 4pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 2.0pt 4.0pt 3.0pt 2.0pt; mso-style-name: "Samples Button Marker\,sbm"; mso-border-alt: solid blue .5pt
+}
+DIV.SamplesButtonMarker {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; LINE-HEIGHT: 13pt; MARGIN: 0in 0in 0pt 4pt; PADDING-BOTTOM: 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; PADDING-TOP: 0in; mso-style-parent: "Text\,t"; mso-line-height-rule: exactly; mso-pagination: widow-orphan; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-padding-alt: 2.0pt 4.0pt 3.0pt 2.0pt; mso-style-name: "Samples Button Marker\,sbm"; mso-border-alt: solid blue .5pt
+}
+SPAN.ConditionalMarker {
+	BACKGROUND: #ffffbf; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; COLOR: black; DISPLAY: none; mso-ansi-font-size: 10.0pt; mso-ascii-font-family: "Courier New"; mso-hansi-font-family: "Courier New"; mso-style-name: "Conditional Marker\,cm"; mso-shading: windowtext; mso-pattern: gray-375 yellow; mso-hide: all
+}
+SPAN.msoIns {
+	COLOR: teal; TEXT-DECORATION: underline; text-underline: single; mso-style-name: ""; mso-style-type: export-only
+}
+SPAN.msoDel {
+	COLOR: red; TEXT-DECORATION: line-through; mso-style-name: ""; mso-style-type: export-only
+}
+DIV.Section1 {
+	page: Section1
+}
+OL {
+	MARGIN-BOTTOM: 0in
+}
+UL {
+	MARGIN-BOTTOM: 0in
+}
+</STYLE>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></HEAD>
+<BODY lang=EN-US link=blue style="tab-interval: .25in" vLink=purple>
+<DIV class=Section1>
+<H1 style="MARGIN-LEFT: 0in">Known Issues for XSL ISAPI Filter 2.0</H1>
+<P class=MsoHeading8 style="MARGIN-LEFT: 0in">Server-side XSL formatting for 
+multiple device-types</P>
+<P class=Text><SPAN class=Italic>May 2000</SPAN></P>
+<P class=Text>This is a companion article to the “<I>XSL ISAPI Filter 2.0 – 
+Server-side XSL formatting for multiple device-types</I>” article.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>This article enumerates and discusses 
+known issues that may be of interest to a server-administrator or 
+content-developer using the XSL ISAPI filter.</P>
+<P class=Text>Various “Tips and Tricks” are also discussed here.</P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">PASP Restrictions</P>
+<P class=Text>The PASP files used to generate XML dynamically and then pass into 
+the XSL ISAPI pipeline have a few additional restrictions above and beyond those 
+imposed by ASP itself.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>The ASP “include” mechanism (<SPAN 
+style="FONT-FAMILY: 'Courier New'">&lt;!--#include 
+File="includeMe.inc"--&gt;</SPAN>) is not supported in PASP files.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]><SPAN 
+style="FONT-FAMILY: 'Courier New'">Request.BinaryRead</SPAN> <SPAN 
+style="FONT-FAMILY: 'Courier New'">and Response.BinaryWrite</SPAN> are not 
+supported.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>The XSL ISAPI pipeline introduces an additional HTTP 
+server variable (<SPAN 
+style="FONT-FAMILY: 'Courier New'">HTTP_SSXSLSRCFILE</SPAN>) that is not present 
+without the pipeline.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>If the <SPAN 
+style="FONT-FAMILY: 'Courier New'">&lt;@LANGUAGE …&gt;</SPAN> directive is in a 
+PASP file, it must be the absolute first line of that file, before any <SPAN 
+style="FONT-FAMILY: 'Courier New'">&lt;OBJECT&gt;</SPAN> declarations or even 
+any carriage returns.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>XSL ISAPI works by preprocessing PASP files into actual 
+ASP files.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>PASP’s are only 
+“re-processed” by the system if they have a newer timestamp than the ASP that’s 
+generated from it.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Therefore, 
+whenever copying over PASP files, be sure that their timestamp is updated.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>It’s often desirable to be able to populate an XML DOM 
+document object from ASP scripts.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>This is typically done via the “<SPAN 
+style="FONT-FAMILY: 'Courier New'">load</SPAN>” method.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>One should bear in mind that doing a 
+“<SPAN style="FONT-FAMILY: 'Courier New'">load</SPAN>” on a fully-qualified URL 
+is not currently supported by XML.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>(More accurately, it’s not supported by WinInet, which is used by the 
+“<SPAN style="FONT-FAMILY: 'Courier New'">load</SPAN>” method.) That is, 
+something like <BR><BR><SPAN 
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><SPAN 
+style="FONT-FAMILY: 'Courier New'">doc.load(“http://www.microsoft.com/xmlSources/myXml.xml”)</SPAN><BR><BR>is 
+not supported.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Loading from a local 
+source on the machine is supported:<BR><BR><SPAN 
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><SPAN 
+style="FONT-FAMILY: 'Courier New'">doc.load(Server.MapPath(“/myVdir/myXml.xml”))</SPAN><BR><BR>See 
+the Knowledge Base article at <A 
+href="http://support.microsoft.com/support/kb/articles/Q237/9/06.ASP">http://support.microsoft.com/support/kb/articles/Q237/9/06.ASP</A> 
+for more information.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Due to the way PASP files write into an XML DOM 
+document, it’s not currently feasible to include a “<SPAN 
+style="FONT-FAMILY: 'Courier New'">DOCTYPE</SPAN>” node in a PASP file.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>It simply won’t generate the proper 
+XML.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Therefore, there’s currently 
+no way to take advantage of stylesheet selection based on <SPAN 
+style="FONT-FAMILY: 'Courier New'">DOCTYPE</SPAN> for dynamically generated XML 
+content.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>(All works fine for static 
+XML.)<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>The workaround is to have the 
+generated XML reference separate configuration files instead.</P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">File Location Issue</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l31 level1 lfo88; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000519T1035"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>XSL ISAPI does not recommend the use of a 
+fully-qualified URL as the path to a configuration or stylesheet file. This is 
+due to known issues with the use of WinInet from a server.<BR><BR>See the 
+Knowledge Base article at <A 
+href="http://support.microsoft.com/support/kb/articles/Q237/9/06.ASP">http://support.microsoft.com/support/kb/articles/Q237/9/06.ASP</A> 
+for more information.</P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">General Server Administration 
+Issues</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Making a PASP file or an XML file the default document 
+will not work.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Instead, have a 
+<SPAN style="FONT-FAMILY: 'Courier New'">default.asp</SPAN> that does a <SPAN 
+style="FONT-FAMILY: 'Courier New'">Response.Redirect</SPAN> to the desired PASP 
+or XML file.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Due to the way XSL ISAPI maps URLs, the logging 
+information contains URLs that are hit after the mapping (namely <SPAN 
+style="FONT-FAMILY: 'Courier New'">RedirectorXML.asp</SPAN> and <SPAN 
+style="FONT-FAMILY: 'Courier New'">RedirectPASP.asp</SPAN>).<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>If so desired, the original requests can 
+be logged by modifying those <SPAN 
+style="FONT-FAMILY: 'Courier New'">Redirector*.asp</SPAN> files to write out the 
+original path to a log file.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>XSL ISAPI will ignore requests for .xml files in virtual 
+directories that have an ISAPI extension registered for the “.xml” or “*” 
+extensions.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Thus, such files will 
+be passed directly on to the extension without going through XSL ISAPI.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>The <A 
+href="http://msdn.microsoft.com/workshop/xml/articles/xmlsql/sqlxml_prev.asp">Microsoft 
+SQL Server XML Technology Preview</A> is an example of an ISAPI extension that 
+takes over the “*” extension in the directories it operates in.<BR><BR>Note also 
+that XSL ISAPI<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>1.1 registers “.xml” 
+so XSL ISAPI 1.1 must be uninstalled in order for XSL ISAPI 2.0 to function 
+properly.</P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">Security-related Issues</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in; tab-stops: list .5in; mso-list: l61 level1 lfo87"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Because of the way the XSL ISAPI filter redirects URL 
+requests to a known ASP file (/xslisapi/RedirectorXML.asp), and the server-side 
+objects invoked by that ASP file use Win32 filesystem functions to access the 
+original XML file, <U>only</U> filesystem-based permissions (ACLs) on the XML 
+files will be honored.</P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">XSL Authoring Information</P>
+<P class=Text>The following comments are not specific to XSL ISAPI, and are 
+general issues with developing using XSL.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>However, they are relevant in the context of rendering for cell-phone 
+markup languages.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: list .5in; mso-list: l61 level1 lfo87; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>The WML cellphone markup language is very sensitive to 
+stray whitespace.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Care must be 
+taken in forming XSL that doesn’t introduce such whitespace.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>For instance, this XSL emits 
+WML:<BR><BR><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN><SPAN 
+style="COLOR: windowtext; FONT-FAMILY: 'Courier New'; FONT-SIZE: 9pt; mso-bidi-font-weight: bold">&lt;xsl:attribute 
+name="onpick"&gt;&lt;xsl:value-of 
+select="link"&gt;&lt;/xsl:attribute&gt;</SPAN><SPAN 
+style="COLOR: windowtext; FONT-FAMILY: Arial; FONT-SIZE: 9pt; mso-bidi-font-weight: bold"><BR></SPAN><BR>does 
+the <I>right </I>thing and inserts no additional whitespace.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>However:<BR><BR><SPAN 
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN><SPAN 
+style="COLOR: windowtext; FONT-FAMILY: 'Courier New'; FONT-SIZE: 9pt; mso-bidi-font-weight: bold">&lt;xsl:attribute 
+name="onpick"&gt;<BR><SPAN 
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&lt;xsl:value-of select="link"&gt;<BR><SPAN 
+style="mso-spacerun: yes">&nbsp;&nbsp; 
+</SPAN>&lt;/xsl:attribute&gt;<BR></SPAN><BR>will insert whitespace between the 
+attribute name and value, and thus produce non-compliant WML.<B 
+style="mso-bidi-font-weight: normal"><SPAN 
+style="COLOR: windowtext; FONT-FAMILY: Arial; FONT-SIZE: 9pt"><BR 
+style="mso-special-character: line-break"><![if !supportLineBreakNewLine]><BR 
+style="mso-special-character: line-break"><![endif]></SPAN></B></P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">Tips and Tricks</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>The installation instructions discuss adding the 
+contents of browscap-add.ini to the system’s browscap.ini file.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>For situations where you want to choose 
+stylesheets solely based upon target-markup language, you may want to update 
+your browscap.ini to include a “content-type” property for every browser you’re 
+interested in serving, and then basing your &lt;device&gt; clauses on the 
+“content-type” property.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Chaining of stylesheets may be used as a technique to 
+pull common transformations out of multiple stylesheets into a single stylesheet 
+that’s always used in part of the chain.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>This can be useful for consistent insertion of navigation and legal 
+information.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000518T1705"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>When dynamically generating XML via PASP files, it can 
+be a useful debugging technique to look at the generated XML directly rather 
+than processing it through XSL.<SPAN style="mso-spacerun: yes">&nbsp; 
+</SPAN>This can be done simply by removing the “href” and “server-href” 
+attributes from the xml-stylesheet processing instruction, forcing the generated 
+XML to be sent directly to the client browser (which, in the case of Internet 
+Explorer, will do a nice job of structuring that XML for viewing).</P>
+<P class=MsoHeading9 style="MARGIN-LEFT: 0in">Microsoft Windows NT 4 
+Restrictions</P>
+<P class=Text>The RedirectorPASP.asp file for NT4 relies on Response.Redirect 
+which creates the following limitations when handling .pasp files:</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000519T1037"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Using Response.Redirect will result in additional server 
+to client to server roundtrip. This will impact performance and may be 
+particularly noticeable on low bandwidth connections. </P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000519T1037"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>All client browsers will need to support automatically 
+handling a 302 redirection.</P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000519T1040"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>Postfields sent to the .pasp URL via the HTTP POST 
+method (such as HTML form fields) will be ignored.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN></P>
+<P class=Text 
+style="MARGIN-LEFT: 0.25in; TEXT-INDENT: -0.25in; tab-stops: list .25in; mso-list: l34 level1 lfo83; mso-text-indent-alt: -.25in; mso-list-change: \F0B7 'Susan Chory' 20000519T1037"><![if !supportLists]><SPAN 
+style="FONT-FAMILY: Symbol">·<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN><![endif]>The URL displayed in the client browser will not be the 
+same as the browsed-to URL (for example, __foo.asp will be displayed instead of 
+foo.pasp.)</P>
+<P 
+class=Text><![if !supportEmptyParas]><![endif]>&nbsp;<o:p></o:p></P></DIV></BODY></HTML>

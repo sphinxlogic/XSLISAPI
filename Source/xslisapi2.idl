@@ -1,0 +1,84 @@
+// xslisapi2.idl : IDL source for xslisapi2.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (xslisapi2.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+// ============================================================================
+// INTERFACE: IXMLServerDocument
+[
+    object,
+    uuid(1beafdb7-0d85-4410-bff1-32ccda969986),
+    dual,
+    helpstring("IXMLServerDocument Interface"),
+    pointer_default(unique)
+]
+interface IXMLServerDocument : IDispatch
+{
+    // Methods that mirror the corresponding ASP Response object methods. 
+    HRESULT Write([in] BSTR bstrText);
+    HRESULT End();
+    HRESULT Flush();
+    HRESULT Clear();
+
+    // Other methods
+    HRESULT WriteLine([in] BSTR bstrLine);
+    HRESULT Transform([in] IDispatch * pdispResponse);
+    HRESULT Load([in] BSTR bstrFileName);
+    HRESULT HandleError([in] IDispatch * pdispResponse);
+    HRESULT SetError([in] BSTR errorString,
+                     [in] BSTR errorURL,
+                     [in] BSTR errorHTTPCode);
+    HRESULT ClearError();
+
+    [propput] HRESULT URL([in] BSTR bstrURL);
+    [propput] HRESULT UserAgent([in] BSTR bstrUserAgent);
+};
+
+// ============================================================================
+// INTERFACE: IASPPreprocessor
+[
+    object,
+    uuid(9db9b8c2-aa4e-4ac2-8ce0-d079432035d9),
+    dual,
+    helpstring("IASPPreprocessor Interface"),
+    pointer_default(unique)
+]
+interface IASPPreprocessor : IDispatch
+{
+    HRESULT Process([in] BSTR bstrSrcFile,
+                    [out, retval] BSTR *pbstrOutFile);
+};
+
+
+[
+    uuid(9A31B2D4-52BB-4D05-9209-1CB26DFFD4C1),
+    version(1.0),
+    helpstring("xslisapi2 1.0 Type Library")
+]
+library XSLISAPI2Lib
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+    [
+        uuid(e92356a1-1f0f-4251-b9d8-111680978b86),
+        helpstring("XMLServerDocument Class")
+    ]
+    coclass XMLServerDocument
+    {
+        [default] interface IXMLServerDocument;
+    };
+
+    [
+        uuid(006938ee-be8e-443c-8ddf-63bcd3de73b0),
+        helpstring("ASP Preprocessor object")
+    ]
+    coclass ASPPreprocessor
+    {
+        [default] interface IASPPreprocessor;
+    };
+};

@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<!-- This sample is to demonstrate encoding and character set mechanism in XSLISAPI 2.0.
+      In the config files, the <output> parameter is used to specifiy the encoding and character
+      set being used by the XML data. The code page is used during the transformation and the 
+      character setting is used by the client software to render appropriately.
+
+      Sample scenario: We will set the code page for Chinese and the character set for traditional 
+      Chinese. All text will appear in the traditional Chinese character set. The page will contain a 
+      list of colors (e.g. red, blue, green, orange and yellow). In the XSL stylesheet for the HTML 
+      version of the site the names of the colors will appear in a table with a "swatch" of the same 
+      color appearing in the cell to the right of the name. In the XSL stylesheet for the WML 1.1 version 
+      the list of colors will appear in a list with one color per line. In the HDML version of the site the 
+      colors will appear separate by a commas (and not in a list). 
+-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 browsers -->
+  <device target-markup="HDML 3.0">
+    <!-- use UTF-8 encoding to display the traditional chinese characters -->
+    <output encoding="utf-8"/>
+    <stylesheet href="sampleE-HDML3.xsl"/>
+  </device>
+
+  <!-- for WML 1.1 browsers -->
+  <device target-markup="WML1.1">
+    <!-- use UTF-8 encoding to display the traditional chinese characters -->
+    <output encoding="utf-8"/>
+    <stylesheet href="sampleE-WML11.xsl"/>
+  </device>
+
+  <!-- for IE 5.0 browsers -->
+  <device browser="IE" version="5.0">
+    <!-- Use charset string big5 to display the traditional chinese characters.
+         The reason of using it over encoding is that this will trigger IE5 to
+         prompt for the installation of the language pack of Chinese characters
+         if it has not been installed.  Simply setting the encoding would not
+         trigger the prompt of the installation and the content would not be
+         displayed properly.
+    -->
+    <output charset="big5"/>
+    <stylesheet href="sampleE-IE5.xsl"/>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <!-- use UTF-8 encoding to display the traditional chinese characters -->
+    <output encoding="utf-8"/>
+    <stylesheet href="sampleE-WML11.xsl"/>
+  </device>
+</server-styles-config>

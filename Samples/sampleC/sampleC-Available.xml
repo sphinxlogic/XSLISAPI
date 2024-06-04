@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<!-- Here we set the doctype as "Available"-->
+<!DOCTYPE Available>
+<?xml-stylesheet type="text/xsl" server-config="sampleC-Config.xml" href="sampleC-IE5.xsl" ?>
+<fruits>
+  <fruit>
+    <name>apples</name>
+    <price>0.99</price>
+  </fruit>
+
+  <fruit>
+    <name>oranges</name>
+    <price>0.69</price>
+  </fruit>
+
+  <fruit>
+    <name>pears</name>
+    <price>0.89</price>
+  </fruit>
+
+  <fruit>
+    <name>graphs</name>
+    <price>1.29</price>
+  </fruit>
+
+</fruits>

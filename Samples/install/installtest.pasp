@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="installtestConfig.xml" ?>
+
+<test>
+<comment1>Your xsl isapi installation is </comment1>
+<B> NOT </B>
+<comment2>successfully processing pasp files.</comment2>
+</test>
+  

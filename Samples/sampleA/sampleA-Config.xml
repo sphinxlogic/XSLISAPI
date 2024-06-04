@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<!-- This sample is to demonstrate how to apply Static XML and XSL device dependent stylesheets provided 
+      to generate HTML for IE 5, and WML 1.1 and HDML. 
+      
+      The output page will contain a list of colors (e.g. red, blue, green, orange and yellow). In the XSL stylesheet
+      for the HTML version of the site the names of the colors will appear in a table with a "swatch" of the same 
+      color appearing in the cell to the right of the name. In the XSL stylesheet for the WML 1.1 version the list of 
+      colors will appear in a list with one color per line. In the HDML version of the site the colors will appear separate 
+      by a commas (and not in a list). 
+-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 based browsers -->
+  <device target-markup="HDML 3.0">
+    <stylesheet href="sampleA-HDML3.xsl"/>
+  </device>
+
+  <!-- for WML 1.1 based browsers -->
+  <device target-markup="WML1.1">
+    <stylesheet href="sampleA-WML11.xsl"/>
+  </device>
+
+  <!-- for IE 5 based browsers -->
+  <device browser="IE" version="5.0">
+    <stylesheet href="sampleA-IE5.xsl"/>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <stylesheet href="sampleA-WML11.xsl"/>
+  </device>
+</server-styles-config>

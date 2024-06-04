@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="sampleE-Config.xml" href="sampleE-IE5.xsl" ?>
+<colors>
+  <color>
+     <name>Red</name>
+     <value>Red</value>
+
+     <!-- the traditional chinese character for color red-->
+     <traditional_Chinese_character>紅</traditional_Chinese_character>
+  </color>
+
+  <color>
+     <name>Blue</name>
+     <value>Blue</value>
+
+     <!-- the traditional chinese character for color blue-->
+     <traditional_Chinese_character>藍</traditional_Chinese_character>
+  </color>
+
+  <color>
+     <name>Green</name>
+     <value>Green</value>
+
+     <!-- the traditional chinese character for color green-->
+     <traditional_Chinese_character>綠</traditional_Chinese_character>
+  </color>
+
+  <color>
+     <name>Orange</name>
+     <value>Orange</value>
+
+     <!-- the traditional chinese character for color orange-->
+     <traditional_Chinese_character>橘</traditional_Chinese_character>
+  </color>
+
+  <color>
+     <name>Yellow</name>
+     <value>Yellow</value>
+
+     <!-- the traditional chinese character for color yellow-->
+     <traditional_Chinese_character>黃</traditional_Chinese_character>
+  </color>
+
+</colors>

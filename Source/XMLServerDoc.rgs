@@ -1,0 +1,27 @@
+HKCR
+{
+        XSLISAPI.XMLServerDocument.1 = s 'XMLServerDocument Class'
+        {
+                CLSID = s '{e92356a1-1f0f-4251-b9d8-111680978b86}'
+        }
+        XSLISAPI.XMLServerDocument = s 'XMLServerDocument Class'
+        {
+                CLSID = s '{e92356a1-1f0f-4251-b9d8-111680978b86}'
+                CurVer = s 'XSLISAPI.XMLServerDocument.2'
+        }
+        NoRemove CLSID
+        {
+                ForceRemove {e92356a1-1f0f-4251-b9d8-111680978b86} = s 'XMLServerDocument Class'
+                {
+                        ProgID = s 'XSLISAPI.XMLServerDocument.1'
+                        VersionIndependentProgID = s 'XSLISAPI.XMLServerDocument'
+                        ForceRemove 'Programmable'
+                        InprocServer32 = s '%MODULE%'
+                        {
+                                val ThreadingModel = s 'Apartment'
+                        }
+                        'TypeLib' = s '{9A31B2D4-52BB-4D05-9209-1CB26DFFD4C1}'
+
+                }
+        }
+}

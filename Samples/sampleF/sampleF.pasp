@@ -1,0 +1,77 @@
+<% ' This program can be used to render all kinds of different XML files and provide 
+   ' pagination, break large elements to smaller elements so that small device such 
+   ' as cellular phone can browse the content easily.
+
+   ' The only requirement for the XML data is the proper size of the innermost (deepest 
+   ' element in the hierarchy) element. Thus, it is suggested that each line or paragraph 
+   ' should be wrapped as an element, eg. <line> ... </line>
+   ' This program flatten the XML hyperarchy so that each element in the structure will be 
+   ' treated as the first level element (direct child elements of root). Therefore, this
+   ' program works best with documents whose hierarchy is not critical to the content, 
+   ' such as text documents.
+
+   ' However, please notice that this sample is only meant to be illustrative. This
+   ' approach is quite inefficient for this page is being reprocessed for each screenful
+   ' of information.
+%>
+
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" server-config="sampleF-Config.xml" href="sampleF-IE5.xsl" ?>
+<document>
+<%
+    ' get the size of each page, if not specified, the default is 1000 characters
+    iSize  = CInt(Request("size"))
+    If iSize = 0 Then iSize  = 1000 End if
+
+    ' get the page request
+    iPage = CInt(Request("page"))
+  
+    ' Load sampleF.xml as a DOM object
+    Set doc = CreateObject("Microsoft.XMLDOM")
+    doc.async = False
+    doc.validateOnParse = False
+    doc.load(Server.mapPath("sampleF.xml"))
+
+    ' flatten the XML data into single level structure
+    Set nodeList = doc.selectNodes("//text()")
+
+    ' initialize the parameters
+    iPageSize = 0
+    iCount = 0
+    iPageCount = 0
+
+    ' Divide the document into smaller pages, each page has a maximum of iSize characters
+    While iCount < nodeList.length
+        Set childNode = nodeList(iCount)
+        iPageSize = Len(childNode.text)
+
+        %><page><%
+        While iPageSize < iSize and iCount < nodeList.length
+            %><line><% Response.Write childNode.XML %></line><%
+            iCount = iCount + 1
+            If iCount < nodeList.length Then
+                Set childNode = nodeList(iCount)
+                iPageSize = iPageSize + Len(childNode.text)
+            End if
+        Wend
+        iPageCount = iPageCount + 1
+        %></page><%
+    Wend
+
+    ' Here we put the size parameter into the output XML data
+    %><size><%= iSize%></size><%
+
+    ' Put the current page number into XML
+    %><pageNumber><%= iPage%></pageNumber><%
+
+    ' If within the limit, output the next page
+    If iPage < iPageCount - 1Then 
+        %><next><%= iPage + 1%></next><%
+    End if
+
+    ' If not first page, output the previous page
+    If iPage > 0 Then
+        %><prev><%= iPage - 1%></prev><%
+    End If
+%>
+</document>

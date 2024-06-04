@@ -1,0 +1,9 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+
+Option Explicit
+
+Sub Application_OnStart()
+  Set Application("ASPPreprocessor") = CreateObject("XSLISAPI.ASPPreprocessor")
+End Sub
+
+</SCRIPT>

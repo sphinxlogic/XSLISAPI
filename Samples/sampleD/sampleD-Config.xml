@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<!-- This sample demonstrates how to use ASP to dynamically generate the XML.
+      In the sampleD.pasp file, it dynamically generates a list of XSL files in the XSLISAPI
+      directory, then the XSL stylesheets are applied to display the content.
+
+      If you follow the installation procesures correctly, you should be able to see at least 
+      the following two xsl files in your XSLISAPI directory.
+     errorHTML.xsl, 
+     errorWML11.xsl
+-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 browsers -->
+  <device target-markup="HDML 3.0">
+    <stylesheet href="sampleD-HDML3.xsl"/>
+  </device>
+
+  <!-- for WML 1.1 browsers -->
+  <device target-markup="WML1.1">
+    <stylesheet href="sampleD-WML11.xsl"/>
+  </device>
+
+  <!-- for IE 5.0 browsers -->
+  <device browser="IE" version="5.0">
+    <stylesheet href="sampleD-IE5.xsl"/>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <stylesheet href="sampleD-WML11.xsl"/>
+  </device>
+</server-styles-config>

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<server-styles-config>
+        <device>
+                <stylesheet href="installtestdesktop.xsl"/>
+        </device>
+</server-styles-config>

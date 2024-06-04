@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<!-- This sample is similar to sample A, but apply the XSL stylesheets based on document type. 
+      In this example, there are two different different doctypes for each document. Depends on
+      the doctype, different xsl stylesheets will be used for transfomration. This sample also 
+      demonstrates encoding for the special character $.
+
+      Sample scenario: There will be two static XML files one with document type "On BackOrder" 
+      and the other with document type "Available".  The Available xml file will contain a list of fruit: 
+      apples $.99, orange $69, pears $.89 and grapes $1.29. The On Backorder XML file will contain 
+      a list of fruit: starfruit $2.00, kiwis $.33, pineapples $1.50 and watermelon $.30. The prices are 
+      all per pound. There will be two stylesheets: one for On Backorder document types which will 
+      have a title of "On Backorder" and the other stylesheet for Available fruit will have a title of 
+      "Available". Both stylesheets will be a table with two columns on the HTML version and a simple 
+      list with the name of the fruit followed by the price in WML and HDML. The two stylesheets will 
+      differ only in the title. 
+-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 based browsers -->
+  <device target-markup="HDML 3.0">
+
+    <!-- Here we use this xsl transformation if the document's doctype is "Available"-->
+    <doctype name="Available">
+      <stylesheet href="sampleC-Available-HDML3.xsl"/>
+    </doctype>
+
+    <!-- Here we use this xsl transformation if the document's doctype is "OnBackorder"-->
+    <doctype name="OnBackorder">
+      <stylesheet href="sampleC-OnBackOrder-HDML3.xsl"/>
+    </doctype>
+  </device>
+
+  <!-- for WML 1.1 based browsers -->
+  <device target-markup="WML1.1">
+    <doctype name="Available">
+      <stylesheet href="sampleC-Available-WML11.xsl"/>
+    </doctype>
+    <doctype name="OnBackorder">
+      <stylesheet href="sampleC-OnBackOrder-WML11.xsl"/>
+    </doctype>
+  </device>
+
+  <!-- for IE 5 based browsers -->
+  <device browser="IE" version="5.0">
+    <doctype name="Available">
+      <stylesheet href="sampleC-Available-IE5.xsl"/>
+    </doctype>
+    <doctype name="OnBackorder">
+      <stylesheet href="sampleC-OnBackOrder-IE5.xsl"/>
+    </doctype>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <doctype name="Available">
+      <stylesheet href="sampleC-Available-WML11.xsl"/>
+    </doctype>
+    <doctype name="OnBackorder">
+      <stylesheet href="sampleC-OnBackOrder-WML11.xsl"/>
+    </doctype>
+  </device>
+</server-styles-config>

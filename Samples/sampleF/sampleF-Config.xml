@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<!-- This sample demonstrates using the asp code to "chunk-up" large XML files to be handled on cell phones.
+      The sampleF.pasp file loads the XML data from sampleF.xml and breaks the structure into smaller 
+      elements so that small display devices such as cell phone can render the content properly.
+      
+      Sample scenario: We will use the actual MSDN article in XML format for the large content source. 
+      Two different stylesheets will be created; one to display the content on the desktop without navigation 
+      or frames and the second will display the plain text for a cell phone. The asp code will logically "chunk" 
+      the content with appropriate breaks.
+-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 browsers -->
+  <device target-markup="HDML 3.0">
+    <stylesheet href="sampleF-HDML3.xsl"/>
+  </device>
+
+  <!-- for WML 1.1 browsers -->
+  <device target-markup="WML1.1">
+    <stylesheet href="sampleF-WML11.xsl"/>
+  </device>
+
+  <!-- for IE 5.0 browsers -->
+  <device browser="IE" version="5.0">
+    <stylesheet href="sampleF-IE5.xsl"/>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <stylesheet href="sampleF-WML11.xsl"/>
+  </device>
+</server-styles-config>

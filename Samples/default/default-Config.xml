@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<!-- This sample is to demonstrate how XSLISAPI works with XML and XSL.
+      Depends on browsers or devices, different XSL will be invoked for transformation.
+      For example, if the a user uses IE5.0 to browse Config.xml file, default-IE5.xsl
+      will be used.
+      The XML being sent to each XSL will be a list of sample names and file names.
+      Users can choose which sample they'd like to browser, and the corresponding 
+      sample will be called.-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 based browsers -->
+  <device target-markup="HDML 3.0">
+    <stylesheet href="default-HDML3.xsl"/>
+  </device>
+
+  <!-- for WML 1.1 based browsers -->
+  <device target-markup="WML1.1">
+    <stylesheet href="default-WML11.xsl"/>
+  </device>
+
+  <!-- for IE 5 based browsers -->
+  <device browser="IE" version="5.0">
+    <stylesheet href="default-IE5.xsl"/>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <stylesheet href="default-WML11.xsl"/>
+  </device>
+</server-styles-config>

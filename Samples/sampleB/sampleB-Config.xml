@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+
+<!-- This sample demonstrates how to apply a chain of XSLs to static XML. Each of the 
+      following removeX.xsl file will send the XML data without object X to the next stylesheet,
+      and the last xsl for each different device in the chain will be used to display the reminding 
+      fruit objects.
+
+      Sample scenario: This will be a list of ingredients for fruit salad. The complete list of available 
+      fruits is oranges, apples, pears, grapes, strawberries, pineapples, bananas, kiwis, starfruit and 
+      watermelon. The stylesheet for the HTML version of the site will list the fruit salad ingredients 
+      as: strawberries, pineapples, kiwis and grapes. The items will be displayed in a list with the title 
+      Fruit Salad Ingredients. The stylesheet for WML 1.1 version will be continuous text (not a list) that 
+      reads, "Fruit salad ingredients: strawberries, pineapples, kiwis and grapes." The stylesheet for HDML 
+      will be in list format with the title Fruit Salad at the top of the list."
+-->
+
+<server-styles-config>
+
+  <!-- for HDML 3.0 based browsers -->
+  <device target-markup="HDML 3.0">
+    <stylesheet href="sampleB-HDML3.xsl"/>
+  </device>
+
+  <!-- for WML 1.1 based browsers -->
+  <device target-markup="WML1.1">
+    <stylesheet href="removeOranges.xsl"/>
+    <stylesheet href="removeApples.xsl"/>
+    <stylesheet href="removePears.xsl"/>
+    <stylesheet href="removeBananas.xsl"/>
+    <stylesheet href="removeStarfruit.xsl"/>
+    <stylesheet href="removeWatermelon.xsl"/>
+    <stylesheet href="sampleB-WML11.xsl"/>
+  </device>
+
+  <!-- for IE 5 based browsers -->
+  <device browser="IE" version="5.0">
+    <stylesheet href="removeOranges.xsl"/>
+    <stylesheet href="removeApples.xsl"/>
+    <stylesheet href="removePears.xsl"/>
+    <stylesheet href="removeBananas.xsl"/>
+    <stylesheet href="removeStarfruit.xsl"/>
+    <stylesheet href="removeWatermelon.xsl"/>
+    <stylesheet href="sampleB-IE5.xsl"/>
+  </device>
+
+  <!-- for MME browsers -->
+  <device browser="MME">
+    <stylesheet href="removeOranges.xsl"/>
+    <stylesheet href="removeApples.xsl"/>
+    <stylesheet href="removePears.xsl"/>
+    <stylesheet href="removeBananas.xsl"/>
+    <stylesheet href="removeStarfruit.xsl"/>
+    <stylesheet href="removeWatermelon.xsl"/>
+    <stylesheet href="sampleB-WML11.xsl"/>
+  </device>
+</server-styles-config>
